@@ -3,7 +3,7 @@
 
 ---
 ### Description du projet : 
-Un projet de fin de cycle - en utilisant Java comme langage de programmation - sous forme d'une application Desktop pour la gestion du stock et des commandes de la pharmacie.
+Un projet de fin de cycle *-en utilisant **Java** comme langage de programmation-* sous forme d'une application Desktop pour la gestion du stock et des commandes de la pharmacie.
 
 Il permet la : 
 
