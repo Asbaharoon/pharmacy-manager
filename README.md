@@ -1,5 +1,5 @@
 
-###### **Application de Gestion de Stock de Pharmacie/Para-pharmacie**
+# **Application de Gestion de Stock de Pharmacie/Para-pharmacie**
 
 ---
 
