@@ -11,7 +11,7 @@ Il permet la :
 *  Gestion des clients
 *  Gestion des fournisseurs
 *  Gestion des ventes et avoirs
-*  Gestion des commandes envoyes aux fournisseurs
+*  Gestion des commandes envoyées aux fournisseurs
 
 Il utilise les technologies :
 
