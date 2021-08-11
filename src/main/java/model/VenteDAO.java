@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import Entity.Categorie;
+import entity.Vente;
 
-public class CategorieDAO {
-	public void insert(Categorie obj) {
+public class VenteDAO {
+	public void insert(Vente obj) {
 		Configuration configuration =new Configuration().configure();
 		StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 				SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
@@ -24,7 +24,7 @@ public class CategorieDAO {
 	}
 	
 	
-public void update(Categorie obj) {
+public void update(Vente obj) {
 		
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
@@ -35,37 +35,36 @@ public void update(Categorie obj) {
 	  transaction.commit();
 	  session.close();
 	}
-public void delete(Categorie obj) {
+public void delete(Vente obj) {
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
 	  Session session=sessionfactory.openSession();
 	  Transaction transaction=session.beginTransaction();
-	  session.delete((Categorie) session.get(Categorie.class,obj.getIdcategorie()));
+	  session.delete((Vente) session.get(Vente.class,obj.getId()));
 	  transaction.commit();
 	  session.close();
 	
 }
 
-public Categorie chercherParId(long id) {
+public Vente chercherParId(long id) {
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
 	  Session session=sessionfactory.openSession();
 	  Transaction transaction=session.beginTransaction();
-	  Categorie c1=(Categorie) session.get(Categorie.class, (long)id);
+	  Vente c1=(Vente) session.get(Vente.class, (long)id);
 	  transaction.commit();
 	  session.close();
 	return c1;
 }
-public List<Categorie> getAll(){
+public List<Vente> getAll(){
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
 	  Session session=sessionfactory.openSession();
 	  Transaction transaction=session.beginTransaction();
-	  Query query = session.createQuery("from Categorie");
+	  Query query = session.createQuery("from Client");
 	  return query.list();
 }
-
 }

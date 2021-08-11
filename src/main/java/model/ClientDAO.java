@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.List;
 
@@ -9,10 +9,12 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import Entity.Commande;
+import entity.Client;
 
-public class CommandeDAO {
-	public void insert(Commande obj) {
+public class ClientDAO {
+	
+	
+	public void insert(Client obj) {
 		Configuration configuration =new Configuration().configure();
 		StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 				SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
@@ -24,7 +26,7 @@ public class CommandeDAO {
 	}
 	
 	
-public void update(Commande obj) {
+public void update(Client obj) {
 		
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
@@ -35,36 +37,37 @@ public void update(Commande obj) {
 	  transaction.commit();
 	  session.close();
 	}
-public void delete(Commande obj) {
+public void delete(Client obj) {
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
 	  Session session=sessionfactory.openSession();
 	  Transaction transaction=session.beginTransaction();
-	  session.delete((Commande) session.get(Commande.class,obj.getIdcmd()));
+	  session.delete((Client) session.get(Client.class,obj.getId()));
 	  transaction.commit();
 	  session.close();
 	
 }
 
-public Commande chercherParId(long id) {
+public Client chercherParId(long id) {
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
 	  Session session=sessionfactory.openSession();
 	  Transaction transaction=session.beginTransaction();
-	  Commande c1=(Commande) session.get(Commande.class, (long)id);
+	  Client c1=(Client) session.get(Client.class, (long)id);
 	  transaction.commit();
 	  session.close();
 	return c1;
 }
-public List<Commande> getAll(){
+public List<Client> getAll(){
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
 	  Session session=sessionfactory.openSession();
 	  Transaction transaction=session.beginTransaction();
-	  Query query = session.createQuery("from Commande");
+	  Query query = session.createQuery("from Client");
 	  return query.list();
 }
+
 }

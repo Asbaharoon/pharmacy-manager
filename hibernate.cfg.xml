@@ -50,11 +50,11 @@ Contributor(s):
     <property name="show_sql">true</property>
     
     
-    <mapping class="Entity.Client"></mapping>
-     <mapping class="Entity.Categorie"></mapping>
-     <mapping class="Entity.Commande"></mapping>
-     <mapping class="Entity.Fournisseur"></mapping>
-     <mapping class="Entity.Produit"></mapping>
-     <mapping class="Entity.Vente"></mapping>
+    <mapping class="entity.Client"></mapping>
+     <mapping class="entity.Categorie"></mapping>
+     <mapping class="entity.Commande"></mapping>
+     <mapping class="entity.Fournisseur"></mapping>
+     <mapping class="entity.Produit"></mapping>
+     <mapping class="entity.Vente"></mapping>
   </session-factory>
 </hibernate-configuration>

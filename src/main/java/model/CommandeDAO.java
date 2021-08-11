@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import Entity.Produit;
+import entity.Commande;
 
-public class ProduitDAO {
-	public void insert(Produit obj) {
+public class CommandeDAO {
+	public void insert(Commande obj) {
 		Configuration configuration =new Configuration().configure();
 		StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 				SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
@@ -24,7 +24,7 @@ public class ProduitDAO {
 	}
 	
 	
-public void update(Produit obj) {
+public void update(Commande obj) {
 		
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
@@ -35,36 +35,36 @@ public void update(Produit obj) {
 	  transaction.commit();
 	  session.close();
 	}
-public void delete(Produit obj) {
+public void delete(Commande obj) {
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
 	  Session session=sessionfactory.openSession();
 	  Transaction transaction=session.beginTransaction();
-	  session.delete((Produit) session.get(Produit.class,obj.getIdprod()));
+	  session.delete((Commande) session.get(Commande.class,obj.getId()));
 	  transaction.commit();
 	  session.close();
 	
 }
 
-public Produit chercherParId(long id) {
+public Commande chercherParId(long id) {
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
 	  Session session=sessionfactory.openSession();
 	  Transaction transaction=session.beginTransaction();
-	  Produit c1=(Produit) session.get(Produit.class, (long)id);
+	  Commande c1=(Commande) session.get(Commande.class, (long)id);
 	  transaction.commit();
 	  session.close();
 	return c1;
 }
-public List<Produit> getAll(){
+public List<Commande> getAll(){
 	Configuration configuration =new Configuration().configure();
 	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
 	  Session session=sessionfactory.openSession();
 	  Transaction transaction=session.beginTransaction();
-	  Query query = session.createQuery("from Produit");
+	  Query query = session.createQuery("from Commande");
 	  return query.list();
 }
 }
