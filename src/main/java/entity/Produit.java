@@ -1,15 +1,11 @@
 package entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -24,25 +20,33 @@ public class Produit implements Serializable {
     @Column(name = "designation", unique = true)
     private String designation;
 
-    @Column(name = "prixAchat")
-    public float prixAchat;
+    @Column(name = "prix_achat")
+    public BigDecimal prixAchat;
 
-    @Column(name = "prvente")
-    public float prixVente;
+    @Column(name = "prix_vente")
+    public BigDecimal prixVente;
 
-    @Column(name = "qteStock")
+    @Column(name = "qte_stock")
     public int qteStock;
 
     @Column(name = "labo")
     private String labo;
 
-    @Column(name = "principeActif")
+    @Column(name = "principe_actif")
     public String principeActif;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idCategorie")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categorie_id", nullable = false)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Categorie categorie;
+
+    @OneToMany(mappedBy = "produit")
+    private Set<CommandeProduit> produitsCommandees;
+
+
+    @OneToMany(mappedBy = "produit")
+    private Set<VenteProduit> produitsVendues;
+
 
     public Produit() {
 

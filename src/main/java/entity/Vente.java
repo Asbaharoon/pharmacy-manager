@@ -1,16 +1,11 @@
 package entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -22,22 +17,29 @@ public class Vente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "dateHeuere")
+    @Column(name = "date_heuere")
     private LocalDateTime dateHeuere;
 
-    @Column(name = "prixTotal")
-    private float prixTotal;
+    @Column(name = "prix_total")
+    private BigDecimal prixTotal;
 
-    @Column(name = "etatpaiment")
+    @Column(name = "etat_paiment")
     private byte etatPaiement;
 
-    @Column(name = "restePaiement")
-    private float restePaiement;
+    @Column(name = "reste_paiement")
+    private BigDecimal restePaiement;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idClient")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Client client;
+
+    @OneToMany(mappedBy = "vente")
+    private Set<VenteProduit> produitsVendues;
+
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id")
+    private Utilisateur utilisateur;
 
     public Vente() {
     }

@@ -1,12 +1,9 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Fournisseur implements Serializable {
@@ -21,8 +18,11 @@ public class Fournisseur implements Serializable {
     @Column(name = "prenom")
     private String prenom;
 
-    @Column(name = "teleprt", columnDefinition = "char(10)")
+    @Column(name = "tele_prt", columnDefinition = "char(10)")
     private String teleprt;
+
+    @OneToMany(mappedBy = "fournisseur")
+    private Set<Commande> commandes;
 
     public Fournisseur() {
     }

@@ -1,12 +1,9 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Categorie implements Serializable{
@@ -17,6 +14,11 @@ public class Categorie implements Serializable{
 	
 	@Column(name="nom")
 	private String nom;
+
+	@OneToMany(mappedBy = "categorie")
+	private Set<Produit> produits;
+
+
 	
 	public Categorie() {
 		

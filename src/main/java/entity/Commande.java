@@ -1,16 +1,11 @@
 package entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -22,22 +17,29 @@ public class Commande implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "dateHeuere")
+    @Column(name = "date_heuere")
     private LocalDateTime dateHeuere;
 
-    @Column(name = "prixTotal")
-    private float prixTotal;
+    @Column(name = "prix_total")
+    private BigDecimal prixTotal;
 
-    @Column(name = "etatPaiment")
+    @Column(name = "etat_paiment")
     private byte etatPaiment;
 
-    @Column(name = "restePaiement")
-    private float restePaiement;
+    @Column(name = "reste_paiement")
+    private BigDecimal restePaiement;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idFournisseur")
+    @JoinColumn(name = "fournisseur_id")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Fournisseur fournisseur;
+
+    @OneToMany(mappedBy = "commande")
+    private Set<CommandeProduit> produitsCommandees;
+
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id")
+    private Utilisateur utilisateur;
 
     public Commande() {
     }

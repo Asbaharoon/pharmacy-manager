@@ -12,7 +12,7 @@ import org.hibernate.cfg.Configuration;
 import entity.Categorie;
 import util.HibernateUtil;
 
-public class CategorieDAO {
+public class CategorieDAO implements DAO<Categorie>{
     private final SessionFactory sessionFactory;
 
     public CategorieDAO() {
@@ -44,7 +44,7 @@ public class CategorieDAO {
 
     }
 
-    public Categorie chercherParId(long id) {
+    public Categorie searchById(long id) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Categorie c1 = (Categorie) session.get(Categorie.class, (long) id);
