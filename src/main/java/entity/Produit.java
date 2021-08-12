@@ -52,7 +52,7 @@ public class Produit implements Serializable {
 
     }
 
-    public Produit(long id, String designation, float prixAchat, float prixVente, int qteStock, String labo, String principeActif, Categorie categorie) {
+    public Produit(long id, String designation, BigDecimal prixAchat, BigDecimal prixVente, int qteStock, String labo, String principeActif, Categorie categorie) {
         this.id = id;
         this.designation = designation;
         this.prixAchat = prixAchat;
@@ -79,19 +79,19 @@ public class Produit implements Serializable {
         this.designation = desig;
     }
 
-    public float getPrixAchat() {
+    public BigDecimal getPrixAchat() {
         return this.prixAchat;
     }
 
-    public void setPrixAchat(float prixAchat) {
+    public void setPrixAchat(BigDecimal prixAchat) {
         this.prixAchat = prixAchat;
     }
 
-    public float getPrvente() {
+    public BigDecimal getPrvente() {
         return this.prixVente;
     }
 
-    public void setPrvente(float prvente) {
+    public void setPrvente(BigDecimal prvente) {
         this.prixVente = prvente;
     }
 

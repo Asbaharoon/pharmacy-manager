@@ -18,7 +18,6 @@ public class Categorie implements Serializable{
 	@OneToMany(mappedBy = "categorie")
 	private Set<Produit> produits;
 
-
 	
 	public Categorie() {
 		

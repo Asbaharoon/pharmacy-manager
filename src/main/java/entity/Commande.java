@@ -44,7 +44,7 @@ public class Commande implements Serializable {
     public Commande() {
     }
 
-    public Commande(long id, LocalDateTime dateHeuere, int prixTotal, byte etatPaiment, float restePaiement, Fournisseur fournisseur) {
+    public Commande(long id, LocalDateTime dateHeuere, BigDecimal prixTotal, byte etatPaiment, BigDecimal restePaiement, Fournisseur fournisseur) {
         this.id = id;
         this.dateHeuere = dateHeuere;
         this.prixTotal = prixTotal;
@@ -69,11 +69,11 @@ public class Commande implements Serializable {
         this.dateHeuere = dateHeuere;
     }
 
-    public float getPrixTotal() {
+    public BigDecimal getPrixTotal() {
         return this.prixTotal;
     }
 
-    public void setPrixtotam(float prixtotal) {
+    public void setPrixtotam(BigDecimal prixtotal) {
         this.prixTotal = prixtotal;
     }
 
@@ -85,11 +85,11 @@ public class Commande implements Serializable {
         this.etatPaiment = etatPaiment;
     }
 
-    public float getRestePaiement() {
+    public BigDecimal getRestePaiement() {
         return this.restePaiement;
     }
 
-    public void setRestePaiement(float restePaiement) {
+    public void setRestePaiement(BigDecimal restePaiement) {
         this.restePaiement = restePaiement;
     }
 

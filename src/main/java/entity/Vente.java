@@ -44,7 +44,7 @@ public class Vente implements Serializable {
     public Vente() {
     }
 
-    public Vente(long id, LocalDateTime dateHeuere, float prixTotal, byte etatPaiement, float restePaiement, Client client) {
+    public Vente(long id, LocalDateTime dateHeuere, BigDecimal prixTotal, byte etatPaiement, BigDecimal restePaiement, Client client) {
         this.id = id;
         this.dateHeuere = dateHeuere;
         this.prixTotal = prixTotal;
@@ -69,11 +69,11 @@ public class Vente implements Serializable {
         this.dateHeuere = dateHeuere;
     }
 
-    public float getPrixTotal() {
+    public BigDecimal getPrixTotal() {
         return this.prixTotal;
     }
 
-    public void setPrixtotam(float prixtotal) {
+    public void setPrixtotam(BigDecimal prixtotal) {
         this.prixTotal = prixtotal;
     }
 
@@ -85,11 +85,11 @@ public class Vente implements Serializable {
         this.etatPaiement = etatPaiement;
     }
 
-    public float getRestePaiement() {
+    public BigDecimal getRestePaiement() {
         return this.restePaiement;
     }
 
-    public void setRestePaiement(float restePaiement) {
+    public void setRestePaiement(BigDecimal restePaiement) {
         this.restePaiement = restePaiement;
     }
 

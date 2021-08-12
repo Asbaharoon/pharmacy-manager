@@ -8,7 +8,6 @@ import java.util.logging.Level;
 
 public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
-        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF); // to prevent UGLY logging
         Configuration config = new Configuration().configure(HibernateUtil.class.getClassLoader().getResource("hibernate.cfg.xml"));
         config.addAnnotatedClass(entity.Categorie.class);
         config.addAnnotatedClass(entity.Client.class);
@@ -17,6 +16,9 @@ public class HibernateUtil {
         config.addAnnotatedClass(entity.Produit.class);
         config.addAnnotatedClass(entity.Vente.class);
         config.addAnnotatedClass(entity.Utilisateur.class);
+        config.addAnnotatedClass(entity.CommandeProduit.class);
+        config.addAnnotatedClass(entity.VenteProduit.class);
+        config.addAnnotatedClass(entity.Avoir.class);
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(config.getProperties());
         return config.buildSessionFactory(builder.build());
     }
