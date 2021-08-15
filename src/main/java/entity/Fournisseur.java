@@ -34,11 +34,11 @@ public class Fournisseur implements Serializable {
         this.teleprt = teleprt;
     }
 
-    public long getidFournisseur() {
+    public long getId() {
         return this.id;
     }
 
-    public void setidFournisseur(long idfournisseur) {
+    public void getId(long idfournisseur) {
         this.id = idfournisseur;
     }
 

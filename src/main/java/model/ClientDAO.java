@@ -2,7 +2,6 @@ package model;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,64 +9,51 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import entity.Client;
+import org.hibernate.query.Query;
+import util.HibernateUtil;
 
-public class ClientDAO {
-	
-	
-	public void insert(Client obj) {
-		Configuration configuration =new Configuration().configure();
-		StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-				SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-		  Session session=sessionfactory.openSession();
-		  Transaction transaction=session.beginTransaction();
-		  session.save(obj);
-		  transaction.commit();
-		  session.close();
-	}
-	
-	
-public void update(Client obj) {
-		
-	Configuration configuration =new Configuration().configure();
-	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-	  Session session=sessionfactory.openSession();
-	  Transaction transaction=session.beginTransaction();
-	  session.update(obj);
-	  transaction.commit();
-	  session.close();
-	}
-public void delete(Client obj) {
-	Configuration configuration =new Configuration().configure();
-	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-	  Session session=sessionfactory.openSession();
-	  Transaction transaction=session.beginTransaction();
-	  session.delete((Client) session.get(Client.class,obj.getId()));
-	  transaction.commit();
-	  session.close();
-	
-}
+public class ClientDAO implements DAO<Client> {
 
-public Client chercherParId(long id) {
-	Configuration configuration =new Configuration().configure();
-	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-	  Session session=sessionfactory.openSession();
-	  Transaction transaction=session.beginTransaction();
-	  Client c1=(Client) session.get(Client.class, (long)id);
-	  transaction.commit();
-	  session.close();
-	return c1;
-}
-public List<Client> getAll(){
-	Configuration configuration =new Configuration().configure();
-	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-	  Session session=sessionfactory.openSession();
-	  Transaction transaction=session.beginTransaction();
-	  Query query = session.createQuery("from Client");
-	  return query.list();
-}
+    private final SessionFactory sessionFactory;
+
+    public ClientDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public void insert(Client obj) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(obj);
+        transaction.commit();
+        session.close();
+    }
+
+    public void update(Client obj) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(obj);
+        transaction.commit();
+        session.close();
+    }
+
+    public void delete(Client obj) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(session.get(Client.class, obj.getId()));
+        transaction.commit();
+        session.close();
+    }
+
+    public Client searchById(long id) {
+        Session session = sessionFactory.openSession();
+        return session.get(Client.class, id);
+    }
+
+    public List<Client> getAll() {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Query<Client> query = session.createQuery("from Client");
+        return query.list();
+    }
 
 }

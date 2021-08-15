@@ -2,69 +2,54 @@ package model;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 import entity.Vente;
+import org.hibernate.query.Query;
 
 public class VenteDAO {
-	public void insert(Vente obj) {
-		Configuration configuration =new Configuration().configure();
-		StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-				SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-		  Session session=sessionfactory.openSession();
-		  Transaction transaction=session.beginTransaction();
-		  session.save(obj);
-		  transaction.commit();
-		  session.close();
-	}
-	
-	
-public void update(Vente obj) {
-		
-	Configuration configuration =new Configuration().configure();
-	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-	  Session session=sessionfactory.openSession();
-	  Transaction transaction=session.beginTransaction();
-	  session.update(obj);
-	  transaction.commit();
-	  session.close();
-	}
-public void delete(Vente obj) {
-	Configuration configuration =new Configuration().configure();
-	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-	  Session session=sessionfactory.openSession();
-	  Transaction transaction=session.beginTransaction();
-	  session.delete((Vente) session.get(Vente.class,obj.getId()));
-	  transaction.commit();
-	  session.close();
-	
-}
 
-public Vente chercherParId(long id) {
-	Configuration configuration =new Configuration().configure();
-	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-	  Session session=sessionfactory.openSession();
-	  Transaction transaction=session.beginTransaction();
-	  Vente c1=(Vente) session.get(Vente.class, (long)id);
-	  transaction.commit();
-	  session.close();
-	return c1;
-}
-public List<Vente> getAll(){
-	Configuration configuration =new Configuration().configure();
-	StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-			SessionFactory sessionfactory= configuration.buildSessionFactory(builder.build());
-	  Session session=sessionfactory.openSession();
-	  Transaction transaction=session.beginTransaction();
-	  Query query = session.createQuery("from Client");
-	  return query.list();
-}
+    private final SessionFactory sessionFactory;
+
+    public VenteDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public void insert(Vente obj) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(obj);
+        transaction.commit();
+        session.close();
+    }
+
+
+    public void update(Vente obj) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(obj);
+        transaction.commit();
+        session.close();
+    }
+
+    public void delete(Vente obj) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(session.get(Vente.class, obj.getId()));
+        transaction.commit();
+        session.close();
+    }
+
+    public Vente searchById(long id) {
+        Session session = sessionFactory.openSession();
+        return session.get(Vente.class, id);
+    }
+
+    public List<Vente> getAll() {
+        Session session = sessionFactory.openSession();
+        Query<Vente> query = session.createQuery("from Vente");
+        return query.list();
+    }
 }
