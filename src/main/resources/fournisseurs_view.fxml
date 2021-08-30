@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="1031.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FournisseurController">
+   <children>
+      <VBox maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="180.0" prefWidth="971.0" styleClass="pane" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="964.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <Label prefHeight="35.0" prefWidth="145.0" styleClass="sub-menu-label" text="Fournisseurs" textFill="#008086">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Separator maxHeight="-Infinity" maxWidth="30.0" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" prefWidth="9.0" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <Label prefHeight="30.0" prefWidth="310.0" styleClass="welcome-label" text="Bonjour, Khalil EL JOUADI!" textFill="#00000049">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="13.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="dateAndTimeLabel" styleClass="time-label" text="Loading..." textFill="#616161">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="250.0" top="18.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox prefHeight="182.0" prefWidth="971.0">
+               <children>
+                  <Separator prefHeight="25.0" prefWidth="931.0">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <HBox prefHeight="37.0" prefWidth="943.0">
+                     <VBox.margin>
+                        <Insets left="28.0" top="8.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="253.0" text="Actions sur un fournisseur" textFill="#727272">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="175.0" text="Actions sur la liste" textFill="#727272">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="329.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="86.0" prefWidth="971.0">
+                     <children>
+                        <Button graphicTextGap="20.0" mnemonicParsing="false" onAction="#onClickOpenAddWindow" prefHeight="42.0" prefWidth="160.0" text="Ajouter">
+                           <HBox.margin>
+                              <Insets left="25.0" top="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/addr.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="modifyButton" disable="true" graphicTextGap="14.0" mnemonicParsing="false" onAction="#onClickModifyWindow" prefHeight="42.0" prefWidth="160.0" text="Modifier">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/edfit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="deleteButton" disable="true" graphicTextGap="14.0" mnemonicParsing="false" onAction="#onClickDeleteFournisseur" prefHeight="42.0" prefWidth="160.0" text="Supprimer">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/delefte.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button graphicTextGap="20.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" text="Importer">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/import.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="63.0" top="20.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button graphicTextGap="20.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" text="Exporter">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/export.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <effect>
+            <DropShadow height="48.65" radius="23.825" width="48.65">
+               <color>
+                  <Color opacity="0.3305084705352783" />
+               </color>
+            </DropShadow>
+         </effect>
+      </VBox>
+      <VBox layoutX="478.0" layoutY="221.0" prefHeight="573.0" prefWidth="951.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="221.0">
+         <children>
+            <HBox prefHeight="51.0" prefWidth="951.0">
+               <children>
+                  <TextField id="searchTextField" fx:id="searchBarTextField" prefHeight="44.0" prefWidth="632.0" promptText="ID / Nom et prenom (ex: EL JOUADI Khalil)">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="searchButton" graphicTextGap="20.0" mnemonicParsing="false" onAction="#onClickFilter" prefHeight="42.0" prefWidth="274.0" text="Rechercher">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView fx:id="fournisseursTableView" onMouseClicked="#onSelectEnableActions" prefHeight="564.0" prefWidth="951.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

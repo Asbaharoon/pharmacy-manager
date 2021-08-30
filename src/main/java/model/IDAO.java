@@ -2,16 +2,10 @@ package model;
 
 import java.util.List;
 
-public interface DAO<T> {
-
+public interface IDAO <T> {
     List<T> getAll();
-
-    T searchById(long id);
-
-    void insert(T t);
-
+    T getById(long id);
+    void save(T t);
     void update(T t);
-
     void delete(T t);
-
 }

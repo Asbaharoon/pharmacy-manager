@@ -3,23 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="884.0" prefWidth="1100.0" styleClass="parent" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="884.0" prefWidth="1100.0" styleClass="parent" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
    <left>
       <AnchorPane prefHeight="700.0" prefWidth="69.0" styleClass="sidebar" BorderPane.alignment="CENTER">
          <effect>
@@ -32,253 +22,43 @@
          <children>
             <VBox layoutX="18.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="405.0" prefWidth="34.0" spacing="30.0">
                <children>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" styleClass="stock-button">
+                  <Button fx:id="stockButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#showStockView" prefHeight="25.0" prefWidth="30.0" styleClass="stock-button">
                      <VBox.margin>
                         <Insets left="2.0" />
-                     </VBox.margin></Button>
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" styleClass="suppliers-button" />
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="33.0" styleClass="clients-button" />
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" styleClass="cmds-button" />
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" styleClass="sales-button" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="fournisseursButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#showFournisseursView" prefHeight="25.0" prefWidth="33.0" styleClass="suppliers-button">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="clientsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#showClientsView" prefHeight="23.0" prefWidth="33.0" styleClass="clients-button">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="cmdsButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#showCmdsView" prefHeight="25.0" prefWidth="33.0" styleClass="cmds-button">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="ventesButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#showVentesView" prefHeight="25.0" prefWidth="33.0" styleClass="sales-button">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </VBox>
-            <Button layoutX="19.0" layoutY="830.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0" styleClass="about-button" />
-            <Button layoutX="19.0" layoutY="21.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0" styleClass="menu-button" />
+            <Button fx:id="aboutButton" layoutX="19.0" layoutY="830.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="32.0" styleClass="about-button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="menuButton" layoutX="19.0" layoutY="21.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="32.0" styleClass="menu-button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="1031.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox maxWidth="1.7976931348623157E308" prefHeight="192.0" prefWidth="971.0" styleClass="pane" AnchorPane.bottomAnchor="692.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="964.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <children>
-                        <Label text="Stock" textFill="#008086">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="20.0" top="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Separator maxHeight="-Infinity" maxWidth="30.0" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="30.0" prefWidth="9.0" HBox.hgrow="NEVER">
-                           <HBox.margin>
-                              <Insets left="15.0" top="10.0" />
-                           </HBox.margin>
-                        </Separator>
-                        <Label styleClass="welcome-label" text="Bonjour, Khalil EL JOUADI!" textFill="#00000049">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="15.0" top="13.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label styleClass="time-label" text="02:44 AM  8/15/2021" textFill="#00000049">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="410.0" top="18.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <VBox prefHeight="126.0" prefWidth="971.0">
-                     <children>
-                        <Separator prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </VBox.margin>
-                        </Separator>
-                        <HBox prefHeight="25.0" prefWidth="943.0">
-                           <VBox.margin>
-                              <Insets left="28.0" top="15.0" />
-                           </VBox.margin>
-                           <children>
-                              <Label prefWidth="227.0" styleClass="welcome-label" text="Actions sur un produit" textFill="#00000049">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="30.0" prefWidth="175.0" styleClass="welcome-label" text="Actions sur la liste" textFill="#00000049">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="350.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="103.0" prefWidth="971.0">
-                           <children>
-                              <Button graphicTextGap="20.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" text="Ajouter">
-                                 <HBox.margin>
-                                    <Insets left="25.0" top="20.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@addr.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button disable="true" graphicTextGap="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" text="Modifier">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@edfit.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="20.0" />
-                                 </HBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button disable="true" graphicTextGap="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" text="Supprimer">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@delefte.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="20.0" />
-                                 </HBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button graphicTextGap="20.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" text="Importer">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@import.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="60.0" top="20.0" />
-                                 </HBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button graphicTextGap="20.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" text="Exporter">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <graphic>
-                                    <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@export.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="20.0" />
-                                 </HBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-               <effect>
-                  <DropShadow height="48.65" radius="23.825" width="48.65">
-                     <color>
-                        <Color opacity="0.3305084705352783" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </VBox>
-            <VBox layoutX="478.0" layoutY="221.0" prefHeight="623.0" prefWidth="951.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="221.0">
-               <children>
-                  <HBox prefHeight="51.0" prefWidth="951.0">
-                     <children>
-                        <TextField id="searchTextField" prefHeight="44.0" prefWidth="359.0" promptText="ID / DESIGNATION">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </TextField>
-                        <ComboBox prefHeight="42.0" prefWidth="250.0" promptText="Toutes les categories" styleClass="combo-box">
-                           <HBox.margin>
-                              <Insets left="22.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="5.0" right="5.0" />
-                           </padding></ComboBox>
-                        <ComboBox prefHeight="42.0" prefWidth="272.0" promptText="Tous les principes actifs" styleClass="combo-box">
-                           <HBox.margin>
-                              <Insets left="22.0" />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="5.0" right="5.0" />
-                           </padding>
-                        </ComboBox>
-                        <Button graphicTextGap="20.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="42.0">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@search.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets left="22.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <TableView prefHeight="453.0" prefWidth="951.0" VBox.vgrow="ALWAYS">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                     <VBox.margin>
-                        <Insets top="25.0" />
-                     </VBox.margin>
-                  </TableView>
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
+      <AnchorPane fx:id="parent" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

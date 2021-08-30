@@ -7,45 +7,45 @@
     -fx-background-radius:0 0 30px 0;
 }
 
-.topbar {
-    -fx-background-color: #005b66;
-}
-
-.times-button {
-    -icon-paint: white;
-    -fx-background-color: -icon-paint;
-    -fx-shape:"M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-}
-
-.minus-button {
-    -icon-paint: white;
-    -fx-background-color: -icon-paint;
-    -fx-shape:"M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-}
-
-
 .pane {
     -fx-background-color: white;
     -fx-background-radius: 0px 0px 30px 30px;
     -fx-border-radius: 0px 0px 30px 30px;
 }
 
-.label{
+.sub-menu-label {
     -fx-text-fill: #028090;
 }
+
 
 .welcome-label {
     -fx-text-fill: #464646;
 }
 
-.time-label {
-    -fx-text-fill: #676767;
-}
 
 .button {
     -fx-background-color: #028090;
     -fx-background-radius: 4px;
     -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-color: #008fa1;
+}
+
+.button:pressed {
+    -fx-background-color: #006d7a;
+}
+
+.text-field {
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-color: #028090;
+}
+
+.text-field:focused {
+    -fx-border-width: 2px;
+    -fx-border-color:#006d7a;
 }
 
 .combo-box{
@@ -54,19 +54,65 @@
     -fx-text-fill: white;
     -fx-prompt-text-fill: white;
 }
+
+.combo-box:hover {
+    -fx-background-color: #008fa1;
+}
+
+.combo-box:pressed {
+    -fx-background-color: #006d7a;
+}
+
 .combo-box .arrow{
     -fx-background-color:white;
 }
 
-.combo-box .list-cell .text {
+.combo-box .text {
     -fx-fill : white;
-    -fx-font-size: 19px;
+    -fx-font-size: 18px;
+}
+
+.combo-box .list-cell{
+    -fx-background-color: #028090;
+}
+.combo-box .list-cell:hover {
+    -fx-background-color: #008fa1;
 }
 
 .stock-button {
     -icon-paint: white;
     -fx-background-color: -icon-paint;
     -fx-shape: "M509.5 184.6L458.9 32.8C452.4 13.2 434.1 0 413.4 0H272v192h238.7c-.4-2.5-.4-5-1.2-7.4zM240 0H98.6c-20.7 0-39 13.2-45.5 32.8L2.5 184.6c-.8 2.4-.8 4.9-1.2 7.4H240V0zM0 224v240c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V224H0z";
+}
+
+.stock-button:hover,
+.suppliers-button:hover,
+.clients-button:hover,
+.cmds-button:hover,
+.sales-button:hover,
+.about-button:hover,
+.menu-button:hover {
+    -fx-background-color: #6db8c2;
+}
+
+.stock-button:pressed,
+.suppliers-button:pressed,
+.clients-button:pressed,
+.cmds-button:pressed,
+.sales-button:pressed,
+.about-button:pressed,
+.menu-button:pressed  {
+    -fx-background-color: #006d7a;
+}
+
+.stock-button:focused,
+.suppliers-button:focused,
+.clients-button:focused,
+.cmds-button:focused,
+.sales-button:focused,
+.about-button:focused,
+.menu-button:focused {
+    -fx-background-color: #6db8c2;
 }
 
 .suppliers-button {
@@ -102,8 +148,10 @@
 .menu-button {
     -icon-paint: white;
     -fx-background-color: -icon-paint;
-    -fx-shape:"M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+    -fx-shape:"M296 32h192c13.255 0 24 10.745 24 24v160c0 13.255-10.745 24-24 24H296c-13.255 0-24-10.745-24-24V56c0-13.255 10.745-24 24-24zm-80 0H24C10.745 32 0 42.745 0 56v160c0 13.255 10.745 24 24 24h192c13.255 0 24-10.745 24-24V56c0-13.255-10.745-24-24-24zM0 296v160c0 13.255 10.745 24 24 24h192c13.255 0 24-10.745 24-24V296c0-13.255-10.745-24-24-24H24c-13.255 0-24 10.745-24 24zm296 184h192c13.255 0 24-10.745 24-24V296c0-13.255-10.745-24-24-24H296c-13.255 0-24 10.745-24 24v160c0 13.255 10.745 24 24 24z"
 }
+
+
 
 .table-view {
     -fx-background-color: white;

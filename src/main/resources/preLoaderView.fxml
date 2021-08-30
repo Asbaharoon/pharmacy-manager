@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="283.0" prefWidth="600.0" styleClass="parent" stylesheets="@PreloaderStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="284.0" fitWidth="603.0" layoutX="-2.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/splashart.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="174.0" layoutY="215.0" prefHeight="45.0" prefWidth="253.0" text="Chargement en cours..." textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </Label>
+      <ImageView fitHeight="104.0" fitWidth="99.0" layoutX="250.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Infinity-1s-200px.gif" />
+         </image>
+         <effect>
+            <Glow />
+         </effect>
+      </ImageView>
+      <Pane layoutX="-2.0" layoutY="25.0" prefHeight="65.0" prefWidth="600.0" styleClass="child">
+         <children>
+            <Label layoutX="101.0" layoutY="15.0" prefHeight="37.0" prefWidth="411.0" text="GESTIONNAIRE DE STOCK D'UNE PHARMACIE" textFill="#006d7a">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Label>
+            <Label layoutX="24.0" layoutY="14.0" prefHeight="38.0" prefWidth="49.0" styleClass="icon" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="23.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Label>
+            <Label layoutX="533.0" layoutY="12.0" prefHeight="42.0" prefWidth="47.0" styleClass="icon-2">
+               <effect>
+                  <Glow />
+               </effect>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="97.81" radius="30.7375" width="27.14">
+               <color>
+                  <Color opacity="0.7711864113807678" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Pane>
+   </children>
+</Pane>

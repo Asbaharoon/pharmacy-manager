@@ -1,55 +1,121 @@
 package model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import entity.Categorie;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import entity.Produit;
-import org.hibernate.query.Query;
+import org.hibernate.search.engine.search.query.SearchResult;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
+import util.Utils;
 
-public class ProduitDAO {
+public class ProduitDAO extends AbstractDAO<Produit> implements IDAO<Produit> {
 
-    private final SessionFactory sessionFactory;
-
-    public ProduitDAO(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public ProduitDAO() {
+        setClazz(Produit.class);
     }
 
-    public void insert(Produit obj) {
-        Session session = sessionFactory.openSession();
+    public Set<String> getPAs() {
+        List<Produit> produitList = getAll();
+        Set<String> paStringList = new HashSet<>();
+        produitList.forEach(produit -> paStringList.add(produit.getPrincipeActif()));
+        return paStringList;
+    }
+
+    public List<Produit> filter(String str, Categorie cat, String pa) throws InterruptedException {
+        // TEST WHETHER STR GIVEN IN PARAMETER IS ID OR DESIGNATION
+        long id = 0;
+        String desig = "";
+        if (Utils.isNumeric(str)) {
+            id = Long.parseLong(str);
+        } else {
+            desig = "*" + str + "*";
+            System.out.println(desig);
+        }
+
+        // CORRECT LOGIC ISSUES REGARDING COMBO BOXES
+        if (cat != null && cat.getNom().equals("Toutes les categories")) {
+            cat = null;
+        }
+
+        if (pa != null && pa.equals("Tous les principes actifs")) {
+            pa = null;
+        }
+
+        Session session = getCurrentSession();
+        SearchSession searchSession = Search.session(session);
         Transaction transaction = session.beginTransaction();
-        session.save(obj);
+        searchSession.massIndexer(Produit.class).startAndWait();
+        SearchResult<Produit> result;
+
+        final String finalDesig = desig;
+        final long finalId = id;
+        final Categorie finalCat = cat;
+        final String finalPa = pa;
+
+        if (cat == null && pa == null) {
+            result = searchSession.search(Produit.class)
+                    .where(f -> f.bool()
+                            .should(f.phrase()
+                                    .field("designation")
+                                    .matching(finalDesig).slop(3))
+                            .should(f.wildcard()
+                                    .field("designation")
+                                    .matching(finalDesig))
+                            .should((f.id().matching(finalId))))
+                    .fetchAll();
+        } else if (cat == null) {
+            result = searchSession.search(Produit.class)
+                    .where(f -> f.bool()
+                            .must(f.bool()
+                                    .should(f.wildcard()
+                                            .field("designation")
+                                            .matching(finalDesig))
+                                    .should((f.id()
+                                            .matching(finalId))))
+                            .must(f.match()
+                                    .field("principeActif")
+                                    .matching(finalPa)))
+                    .fetchAll();
+        } else if (pa == null) {
+            result = searchSession.search(Produit.class)
+                    .where(f -> f.bool()
+                            .must(f.bool()
+                                    .should(f.wildcard()
+                                            .field("designation")
+                                            .matching(finalDesig))
+                                    .should((f.id()
+                                            .matching(finalId))))
+                            .must(f.match()
+                                    .field("categorie")
+                                    .matching(finalCat)))
+                    .fetchAll();
+        } else {
+            result = searchSession.search(Produit.class)
+                    .where(f -> f.bool()
+                            .must(f.bool()
+                                    .should(f.wildcard()
+                                            .field("designation")
+                                            .matching(finalDesig))
+                                    .should((f.id()
+                                            .matching(finalId))))
+                            .must(f.match()
+                                    .field("categorie")
+                                    .matching(finalCat))
+                            .must(f.match()
+                                    .field("principeActif")
+                                    .matching(finalPa)))
+                    .fetchAll();
+        }
+        assert result != null;
+        List<Produit> hits = result.hits();
         transaction.commit();
         session.close();
-    }
-
-    public void update(Produit obj) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(obj);
-        transaction.commit();
-        session.close();
-    }
-
-    public void delete(Produit obj) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(session.get(Produit.class, obj.getId()));
-        transaction.commit();
-        session.close();
-
-    }
-
-    public Produit searchById(long id) {
-        Session session = sessionFactory.openSession();
-        return session.get(Produit.class, id);
-    }
-
-    public List<Produit> getAll() {
-        Session session = sessionFactory.openSession();
-        Query<Produit> query = session.createQuery("from Produit");
-        return query.list();
+        return hits;
     }
 }

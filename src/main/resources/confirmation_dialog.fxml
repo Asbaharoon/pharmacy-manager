@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<HBox stylesheets="@DialogStylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ConfirmationDialogController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="267.0" prefWidth="10.0" styleClass="header" HBox.hgrow="ALWAYS" />
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="600.0" styleClass="parent" stylesheets="@DialogStylesheet.css">
+         <children>
+            <HBox prefHeight="187.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="59.0" prefWidth="88.0" styleClass="alert-icon">
+                     <HBox.margin>
+                        <Insets left="25.0" top="70.0" />
+                     </HBox.margin>
+                  </Label>
+                  <VBox prefHeight="156.0" prefWidth="528.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Attention!" textFill="#000000ca">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="contentLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Etes-vous sûr que vous voulez supprimer &quot;NAME HERE&quot; ?" wrappingWidth="450.0">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vous ne pouvez pas défaire cette action.">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="35.0" top="35.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="95.0" prefWidth="600.0" spacing="15.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#closeWindow" styleClass="cancel-button" text="Annuler">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#confirmDeletion" prefHeight="44.0" prefWidth="131.0" styleClass="confirm-button" text="Supprimer">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

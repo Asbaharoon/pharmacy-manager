@@ -2,23 +2,29 @@ package entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.search.mapper.pojo.bridge.mapping.annotation.ValueBridgeRef;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import util.CategorieValueBridge;
 
 @Entity
+@Indexed
 public class Produit implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "designation", unique = true)
-    private String designation;
+    @FullTextField
+    @Column(name = "designation", unique = true, nullable = false)
+    public String designation;
 
     @Column(name = "prix_achat")
     public BigDecimal prixAchat;
@@ -32,17 +38,18 @@ public class Produit implements Serializable {
     @Column(name = "labo")
     private String labo;
 
+    @FullTextField
     @Column(name = "principe_actif")
     public String principeActif;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categorie_id", nullable = false)
+    @GenericField(valueBridge = @ValueBridgeRef(type = CategorieValueBridge.class))
+    @ManyToOne
+    @JoinColumn(name = "categorie_id")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Categorie categorie;
 
     @OneToMany(mappedBy = "produit")
     private Set<CommandeProduit> produitsCommandees;
-
 
     @OneToMany(mappedBy = "produit")
     private Set<VenteProduit> produitsVendues;
@@ -52,15 +59,14 @@ public class Produit implements Serializable {
 
     }
 
-    public Produit(long id, String designation, BigDecimal prixAchat, BigDecimal prixVente, int qteStock, String labo, String principeActif, Categorie categorie) {
-        this.id = id;
+    public Produit(String designation, String labo, String principeActif, Categorie categorie, BigDecimal prixAchat, BigDecimal prixVente, int qteStock) {
         this.designation = designation;
-        this.prixAchat = prixAchat;
-        this.prixVente = prixVente;
-        this.qteStock = qteStock;
         this.labo = labo;
         this.principeActif = principeActif;
         this.categorie = categorie;
+        this.prixAchat = prixAchat;
+        this.prixVente = prixVente;
+        this.qteStock = qteStock;
     }
 
     public long getId() {
@@ -71,11 +77,11 @@ public class Produit implements Serializable {
         this.id = id;
     }
 
-    public String getDesig() {
+    public String getDesignation() {
         return this.designation;
     }
 
-    public void setDesig(String desig) {
+    public void setDesignation(String desig) {
         this.designation = desig;
     }
 
@@ -87,11 +93,11 @@ public class Produit implements Serializable {
         this.prixAchat = prixAchat;
     }
 
-    public BigDecimal getPrvente() {
+    public BigDecimal getPrixVente() {
         return this.prixVente;
     }
 
-    public void setPrvente(BigDecimal prvente) {
+    public void setPrixVente(BigDecimal prvente) {
         this.prixVente = prvente;
     }
 

@@ -1,54 +1,56 @@
 package model;
 
 import entity.Fournisseur;
-import entity.Vente;
+import entity.Produit;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+import org.hibernate.search.engine.search.common.BooleanOperator;
+import org.hibernate.search.engine.search.query.SearchResult;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
+import util.Utils;
 
 import java.util.List;
 
-public class FournisseurDAO implements DAO<Fournisseur>{
-    private final SessionFactory sessionFactory;
+public class FournisseurDAO extends AbstractDAO<Fournisseur> implements IDAO<Fournisseur> {
 
-    public FournisseurDAO(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public FournisseurDAO() {
+        setClazz(Fournisseur.class);
     }
 
-    public void insert(Fournisseur obj) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(obj);
-        transaction.commit();
-        session.close();
-    }
+    public List<Fournisseur> filter(String str) throws InterruptedException {
+        long id = 0;
+        String name = "";
 
+        if (Utils.isNumeric(str)) {
+            id = Long.parseLong(str);
+        } else {
+            name = str;
+            System.out.println(name);
+        }
 
-    public void update(Fournisseur obj) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(obj);
-        transaction.commit();
-        session.close();
-    }
+        final String finalName = name;
+        final long finalId = id;
 
-    public void delete(Fournisseur obj) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(session.get(Fournisseur.class, obj.getId()));
-        transaction.commit();
-        session.close();
-    }
+        if (str.isEmpty()) {
+            return getAll();
+        } else {
+            Session session = getCurrentSession();
+            SearchSession searchSession = Search.session(session);
+            Transaction txn = session.beginTransaction();
+            searchSession.massIndexer(Fournisseur.class).startAndWait();
+            SearchResult<Fournisseur> result = searchSession.search(Fournisseur.class)
+                    .where(f -> f.bool()
+                            .should(f.simpleQueryString().fields( "nom", "prenom" )
+                                    .matching(finalName)
+                                    .defaultOperator( BooleanOperator.OR ))
+                            .should((f.id().matching(finalId))))
+                    .fetchAll();
+            List<Fournisseur> hits = result.hits();
+            txn.commit();
+            session.close();
+            return hits;
+        }
 
-    public Fournisseur searchById(long id) {
-        Session session = sessionFactory.openSession();
-        return session.get(Fournisseur.class, id);
-    }
-
-    public List<Fournisseur> getAll() {
-        Session session = sessionFactory.openSession();
-        Query<Fournisseur> query = session.createQuery("from Fournisseur");
-        return query.list();
     }
 }
