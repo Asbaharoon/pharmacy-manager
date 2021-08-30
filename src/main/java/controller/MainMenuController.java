@@ -5,8 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.ProduitDAO;
 
 import java.io.IOException;
@@ -53,7 +56,7 @@ public class MainMenuController {
         setSelectedButtonEffect("cmds");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/commandes_view.fxml"));
         Parent node = loader.load();
-        loader.<CommandeController>getController().thisController = loader.getController();
+        // loader.<CommandeController>getController().thisController = loader.getController();
         parent.getChildren().setAll(node);
     }
 
@@ -61,8 +64,19 @@ public class MainMenuController {
         setSelectedButtonEffect("ventes");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ventes_view.fxml"));
         Parent node = loader.load();
-        loader.<VenteController>getController().thisController = loader.getController();
+        // loader.<VenteController>getController().thisController = loader.getController();
         parent.getChildren().setAll(node);
+    }
+
+    public void showAboutView() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/about_view.fxml"));
+        Parent node = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(node));
+        stage.setTitle("A propos de l'application");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.showAndWait();
     }
 
     public void setSelectedButtonEffect(String menuName) {

@@ -95,6 +95,7 @@ public class FournisseurController implements Initializable {
     }
     
     public void onClickFilter() throws InterruptedException {
+        onUnselectDisableActions();
         String str = searchBarTextField.getText();
         List<Fournisseur> filteredList = fournisseurDAO.filter(str);
         FournisseursTableViewUtil.filterTableData(fournisseursTableView, filteredList);

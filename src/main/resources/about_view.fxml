@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="465.0" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="36.0" layoutY="39.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="31.0" prefWidth="393.0" text="A propos :" textFill="#5b5b5b" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="180.0" prefWidth="393.0" text="Un projet de fin de cycle -en utilisant Java comme langage de programmation- sous forme d'une application Desktop pour la gestion du stock et des commandes de la pharmacie.&#10;&#10;- EL JOUADI Khalil&#10;- GUERRAA Hamza&#10;" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </VBox>
+      <HBox layoutX="286.0" layoutY="250.0" prefHeight="33.0" prefWidth="165.0" spacing="10.0">
+         <children>
+            <Label text="Made with " textFill="#727272">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="16.0" prefWidth="19.0" styleClass="heart-icon">
+               <HBox.margin>
+                  <Insets top="13.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="and" textFill="#727272">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="coffee-icon">
+               <HBox.margin>
+                  <Insets top="9.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</Pane>

@@ -1,10 +1,13 @@
 package entity;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+
 import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
-
+@Indexed
 @Entity
 public class Client implements Serializable {
     @Id
@@ -12,14 +15,17 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @FullTextField
     @Column(name = "nom")
     private String nom;
 
+    @FullTextField
     @Column(name = "prenom")
     private String prenom;
 
+    @FullTextField
     @Column(name = "tele_prt", columnDefinition = "char(12)")
-    private String teleprt;
+    private String telePrt;
 
     @OneToMany(mappedBy = "client")
     private Set<Vente> ventes;
@@ -32,7 +38,7 @@ public class Client implements Serializable {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.teleprt = teleprt;
+        this.telePrt = teleprt;
     }
 
     public long getId() {
@@ -59,12 +65,12 @@ public class Client implements Serializable {
         this.prenom = prenom;
     }
 
-    public String getTeleprt() {
-        return this.teleprt;
+    public String getTelePrt() {
+        return this.telePrt;
     }
 
-    public void setTeleprt(String teleprt) {
-        this.teleprt = teleprt;
+    public void setTelePrt(String telePrt) {
+        this.telePrt = telePrt;
     }
 
 }
