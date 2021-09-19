@@ -12,6 +12,15 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>com.gembox</id>
+            <name>GemBox API</name>
+            <url>https://gemboxsoftware.com/repo/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
@@ -31,6 +40,7 @@
             <artifactId>javafx-controls</artifactId>
             <version>15.0.1</version>
         </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
@@ -42,13 +52,18 @@
             <artifactId>hibernate-search-mapper-orm</artifactId>
             <version>6.0.6.Final</version>
         </dependency>
+
         <dependency>
             <groupId>org.hibernate.search</groupId>
             <artifactId>hibernate-search-backend-lucene</artifactId>
             <version>6.0.6.Final</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.gembox</groupId>
+            <artifactId>gembox-spreadsheet</artifactId>
+            <version>1.1.1246</version>
+        </dependency>
 
         <dependency>
             <groupId>org.example</groupId>

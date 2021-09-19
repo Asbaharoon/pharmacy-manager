@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Client;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 import model.ClientDAO;
 import util.ClientsTableViewUtil;
 import util.Clock;
+import util.SpreadsheetUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,7 +23,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ClientController implements Initializable {
-    public ClientController thisController;
     public TableView<Client> clientsTableView;
     public ClientDAO clientDAO;
     public Label dateAndTimeLabel;
@@ -43,7 +44,7 @@ public class ClientController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/client_popup_view.fxml"));
         Parent node = loader.load();
         ClientMajController majController = loader.getController();
-        majController.setParentController(thisController);
+        majController.setParentController(this);
         Stage stage = new Stage();
         stage.setScene(new Scene(node));
         stage.setTitle("Ajout d'un client");
@@ -98,6 +99,14 @@ public class ClientController implements Initializable {
         String str = searchBarTextField.getText();
         List<Client> filteredList = clientDAO.filter(str);
         ClientsTableViewUtil.filterTableData(clientsTableView, filteredList);
+    }
+
+    public void onClickImport(ActionEvent actionEvent) throws IOException {
+        SpreadsheetUtil.load(actionEvent, clientsTableView);
+    }
+
+    public void onClickExport(ActionEvent actionEvent) throws IOException {
+        SpreadsheetUtil.saveC(actionEvent, clientsTableView);
     }
 
     public void refresh() {

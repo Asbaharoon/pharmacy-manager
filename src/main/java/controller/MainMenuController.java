@@ -26,12 +26,10 @@ public class MainMenuController {
     public Button aboutButton;
     public Button menuButton;
 
-
     public void showStockView() throws IOException {
         setSelectedButtonEffect("stock");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/stock_view.fxml"));
         Parent node = loader.load();
-        loader.<StockController>getController().thisController = loader.getController();
         parent.getChildren().setAll(node);
     }
 
@@ -39,7 +37,6 @@ public class MainMenuController {
         setSelectedButtonEffect("fournisseurs");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fournisseurs_view.fxml"));
         Parent node = loader.load();
-        loader.<FournisseurController>getController().thisController = loader.getController();
         parent.getChildren().setAll(node);
     }
 
@@ -48,7 +45,6 @@ public class MainMenuController {
         menuButton.setStyle("-fx-background-color: white");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/clients_view.fxml"));
         Parent node = loader.load();
-        loader.<ClientController>getController().thisController = loader.getController();
         parent.getChildren().setAll(node);
     }
 
@@ -56,7 +52,6 @@ public class MainMenuController {
         setSelectedButtonEffect("cmds");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/commandes_view.fxml"));
         Parent node = loader.load();
-        // loader.<CommandeController>getController().thisController = loader.getController();
         parent.getChildren().setAll(node);
     }
 
@@ -64,7 +59,6 @@ public class MainMenuController {
         setSelectedButtonEffect("ventes");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ventes_view.fxml"));
         Parent node = loader.load();
-        // loader.<VenteController>getController().thisController = loader.getController();
         parent.getChildren().setAll(node);
     }
 

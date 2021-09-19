@@ -71,5 +71,8 @@ public class Fournisseur implements Serializable {
         this.telePrt = telePrt;
     }
 
+    public String toString() {
+        return "(" + id + ") " + prenom + " " + nom;
+    }
 
 }

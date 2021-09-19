@@ -25,7 +25,6 @@ public class StockController implements Initializable {
     public TableView<Produit> produitsTableView;
     public Button modifyButton;
     public Button deleteButton;
-    public StockController thisController;
     public TextField searchBarTextField;
     public ComboBox<Categorie> categoriesComboBox;
     public ComboBox<String> PaComboBox;
@@ -50,7 +49,7 @@ public class StockController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/produit_popup_view.fxml"));
         Parent node = loader.load();
         ProduitMajController majController = loader.getController();
-        majController.setParentController(thisController);
+        majController.setParentController(this);
         Stage stage = new Stage();
         stage.setScene(new Scene(node));
         stage.setTitle("Ajout d'un produit");
@@ -98,7 +97,7 @@ public class StockController implements Initializable {
         stage.showAndWait();
         onUnselectDisableActions();
         if (dialogController.getResponse()) {
-            new ProduitDAO().delete(selectedProduit);
+            produitDAO.delete(selectedProduit);
             ProduitsTableViewUtil.fillTableData(produitsTableView, produitDAO);
         }
     }

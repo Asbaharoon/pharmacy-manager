@@ -29,7 +29,7 @@ public class Vente implements Serializable {
     @Column(name = "reste_paiement")
     private BigDecimal restePaiement;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "client_id")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Client client;
@@ -73,7 +73,7 @@ public class Vente implements Serializable {
         return this.prixTotal;
     }
 
-    public void setPrixtotam(BigDecimal prixtotal) {
+    public void setPrixtotal(BigDecimal prixtotal) {
         this.prixTotal = prixtotal;
     }
 
@@ -81,7 +81,7 @@ public class Vente implements Serializable {
         return this.etatPaiement;
     }
 
-    public void setEtatPaiement(byte etatPaiement) {
+    public void setEtatPaiment(byte etatPaiement) {
         this.etatPaiement = etatPaiement;
     }
 

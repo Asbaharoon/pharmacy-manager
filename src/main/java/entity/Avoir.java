@@ -27,6 +27,13 @@ public class Avoir implements Serializable {
     public Avoir() {
     }
 
+    public Avoir(VenteProduit venteProduit, String motif, LocalDateTime dateTime, int qteRendue) {
+        this.venteProduit = venteProduit;
+        this.motif = motif;
+        this.dateHeuere = dateTime;
+        this.qteRendue = qteRendue;
+    }
+
     public long getId() {
         return id;
     }

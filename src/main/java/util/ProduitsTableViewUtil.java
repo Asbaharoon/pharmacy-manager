@@ -8,6 +8,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import model.ProduitDAO;
 
 import java.math.BigDecimal;
@@ -27,6 +28,14 @@ public class ProduitsTableViewUtil {
         );
     }
 
+    public static void fillTableColumnsVerCmd(TableView<Produit> tableView) {
+        tableView.getColumns().addAll(
+                getIdColumn(),
+                getDesignationColumn(),
+                getPrixAchatColumn(),
+                getQteCmdColumn());
+    }
+
     public static void filterTableData(TableView<Produit> tableView, List<Produit> produitList) {
         tableView.getItems().setAll(FXCollections.observableArrayList(produitList));
     }
@@ -43,7 +52,6 @@ public class ProduitsTableViewUtil {
         TableColumn<Produit, Integer> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         idCol.setPrefWidth(50);
-        idCol.setMinWidth(50);
         idCol.setStyle( "-fx-alignment: CENTER;");
         return idCol;
     }
@@ -52,7 +60,6 @@ public class ProduitsTableViewUtil {
         TableColumn<Produit, String> designationCol = new TableColumn<>("Designation");
         designationCol.setCellValueFactory(new PropertyValueFactory<>("designation"));
         designationCol.setPrefWidth(270);
-        designationCol.setMinWidth(270);
         return designationCol;
     }
 
@@ -127,4 +134,13 @@ public class ProduitsTableViewUtil {
             }});
         return categorieColumn;
     }
+
+    public static TableColumn<Produit, String> getQteCmdColumn() {
+        TableColumn<Produit, String> qteCmdCol = new TableColumn<>("Quantité commandé");
+        qteCmdCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        qteCmdCol.setCellValueFactory(new PropertyValueFactory<>("qte"));
+        qteCmdCol.setEditable(true);
+        return qteCmdCol;
+    }
+
 }

@@ -22,6 +22,15 @@
     -fx-text-fill: #464646;
 }
 
+.toggle-button {
+    -fx-background-color: #028090;
+    -fx-background-radius: 4px;
+    -fx-text-fill: white;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #02474f;
+}
 
 .button {
     -fx-background-color: #028090;

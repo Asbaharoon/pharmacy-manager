@@ -1,5 +1,8 @@
 package entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -17,6 +20,7 @@ public class VenteProduit implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "vente_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Vente vente;
 
     @OneToOne(mappedBy = "venteProduit")
@@ -26,6 +30,12 @@ public class VenteProduit implements Serializable {
     private int qteVendue;
 
     public VenteProduit() {
+    }
+
+    public VenteProduit(Produit produit, Vente vente, int quantite) {
+        this.produit = produit;
+        this.vente = vente;
+        this.qteVendue = quantite;
     }
 
     public long getId() {

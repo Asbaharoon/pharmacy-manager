@@ -139,7 +139,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button graphicTextGap="20.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" text="Importer">
+                        <Button graphicTextGap="20.0" mnemonicParsing="false" onAction="#onClickImport" prefHeight="42.0" prefWidth="160.0" text="Importer">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -157,7 +157,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button graphicTextGap="20.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="160.0" text="Exporter">
+                        <Button graphicTextGap="20.0" mnemonicParsing="false" onAction="#onClickExport" prefHeight="42.0" prefWidth="160.0" text="Exporter">
                            <font>
                               <Font size="19.0" />
                            </font>

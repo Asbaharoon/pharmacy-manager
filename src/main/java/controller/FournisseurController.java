@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Fournisseur;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 import model.FournisseurDAO;
 import util.Clock;
 import util.FournisseursTableViewUtil;
+import util.SpreadsheetUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +24,6 @@ import java.util.ResourceBundle;
 
 public class FournisseurController implements Initializable {
 
-    public FournisseurController thisController;
     public TableView<Fournisseur> fournisseursTableView;
     public FournisseurDAO fournisseurDAO;
     public Label dateAndTimeLabel;
@@ -44,7 +45,7 @@ public class FournisseurController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fournisseur_popup_view.fxml"));
         Parent node = loader.load();
         FournisseurMajController majController = loader.getController();
-        majController.setParentController(thisController);
+        majController.setParentController(this);
         Stage stage = new Stage();
         stage.setScene(new Scene(node));
         stage.setTitle("Ajout d'un fournisseur");
@@ -99,6 +100,14 @@ public class FournisseurController implements Initializable {
         String str = searchBarTextField.getText();
         List<Fournisseur> filteredList = fournisseurDAO.filter(str);
         FournisseursTableViewUtil.filterTableData(fournisseursTableView, filteredList);
+    }
+
+    public void onClickImport(ActionEvent actionEvent) throws IOException {
+        SpreadsheetUtil.load(actionEvent, fournisseursTableView);
+    }
+
+    public void onClickExport(ActionEvent actionEvent) throws IOException {
+        SpreadsheetUtil.saveF(actionEvent, fournisseursTableView);
     }
 
     public void refresh() {

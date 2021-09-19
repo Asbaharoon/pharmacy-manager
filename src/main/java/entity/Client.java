@@ -73,4 +73,7 @@ public class Client implements Serializable {
         this.telePrt = telePrt;
     }
 
+    public String toString() {
+        return "(" + id + ") " + prenom + " " + nom;
+    }
 }

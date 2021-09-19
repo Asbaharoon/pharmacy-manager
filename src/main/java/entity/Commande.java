@@ -29,7 +29,7 @@ public class Commande implements Serializable {
     @Column(name = "reste_paiement")
     private BigDecimal restePaiement;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "fournisseur_id")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Fournisseur fournisseur;
@@ -73,7 +73,7 @@ public class Commande implements Serializable {
         return this.prixTotal;
     }
 
-    public void setPrixtotam(BigDecimal prixtotal) {
+    public void setPrixtotal(BigDecimal prixtotal) {
         this.prixTotal = prixtotal;
     }
 
